@@ -14,7 +14,7 @@ export const useNote = (form) => {
 
   const onCreate = async (closeDialog) => {
     if (form.title.trim() === "" || form.content.trim() === "") {
-      setSnackbarMessage("Emty fields");
+      setSnackbarMessage("Empty fields");
       setShowSnackbar(true);
       return;
     }
