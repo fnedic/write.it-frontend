@@ -27,7 +27,7 @@ const Main = () => {
     Content: 300,
     Category: 20,
   };
-  const { handleChange, form } = useForm(initialForm);
+  const { handleChange, form, setForm } = useForm(initialForm);
   const {
     onCreate,
     notes,
@@ -50,7 +50,7 @@ const Main = () => {
   };
   const closeEditDialog = () => setEditOpen(false);
   const openDialog = () => setOpen(true);
-  const closeDialog = () => setOpen(false);
+  const closeDialog = () => {setOpen(false); setForm(initialForm);};
   const toggleArchived = () => {
     setShowArchived(true);
   };
