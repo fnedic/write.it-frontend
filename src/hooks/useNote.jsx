@@ -6,10 +6,21 @@ export const useNote = (form) => {
   const [notes, setNotes] = useState();
   const [archived, setArchived] = useState();
   const [toEdit, setToEdit] = useState();
+  const [showSnackbar, setShowSnackbar] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState("");
+  const handleCloseSnackbar = () => {
+    setShowSnackbar(false);
+  };
 
-  const onCreate = async () => {
+  const onCreate = async (closeDialog) => {
+    if (form.title.trim() === "" || form.content.trim() === "") {
+      setSnackbarMessage("Emty fields");
+      setShowSnackbar(true);
+      return;
+    }
     await NoteService.createNote(form);
     getUnarchivedNotes();
+    closeDialog(true);
   };
   const getUnarchivedNotes = async () => {
     const response = await NoteService.getUnarchivedNotes();
@@ -85,5 +96,8 @@ export const useNote = (form) => {
     archiveNote,
     getArchivedNotes,
     unarchiveNote,
+    showSnackbar,
+    snackbarMessage,
+    handleCloseSnackbar
   };
 };

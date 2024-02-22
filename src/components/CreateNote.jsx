@@ -1,7 +1,25 @@
 /* eslint-disable react/prop-types */
-import { Button, Dialog, DialogTitle, Stack, TextField } from "@mui/material";
+import {
+  Alert,
+  Button,
+  Dialog,
+  DialogTitle,
+  Snackbar,
+  Stack,
+  TextField,
+} from "@mui/material";
 
-const CreateNote = ({open, closeDialog, formFields, handleChange, maxLengths, onCreate}) => {
+const CreateNote = ({
+  open,
+  closeDialog,
+  formFields,
+  handleChange,
+  maxLengths,
+  onCreate,
+  showSnackbar,
+  snackbarMessage,
+  handleCloseSnackbar
+}) => {
   return (
     <Dialog open={open} onClose={closeDialog}>
       <DialogTitle>Add a note:</DialogTitle>
@@ -29,13 +47,27 @@ const CreateNote = ({open, closeDialog, formFields, handleChange, maxLengths, on
           type="submit"
           sx={{ mt: 1, mb: 1, maxWidth: "40%" }}
           onClick={() => {
-            onCreate();
-            closeDialog();
+            onCreate(closeDialog);
           }}
         >
           Save
         </Button>
       </Stack>
+      <Snackbar
+        open={showSnackbar}
+        autoHideDuration={4000}
+        onClose={handleCloseSnackbar}
+        anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+      >
+        <Alert
+          onClose={handleCloseSnackbar}
+          severity={"error"}
+          variant="filled"
+          sx={{ width: "100%" }}
+        >
+          {snackbarMessage}
+        </Alert>
+      </Snackbar>
     </Dialog>
   );
 };

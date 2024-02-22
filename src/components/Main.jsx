@@ -36,6 +36,9 @@ const Main = () => {
     archived,
     unarchiveNote,
     getUnarchivedNotes,
+    showSnackbar,
+    snackbarMessage,
+    handleCloseSnackbar
   } = useNote(form);
   const [open, setOpen] = useState(false);
   const [openEdit, setEditOpen] = useState(false);
@@ -124,6 +127,9 @@ const Main = () => {
           handleChange={handleChange}
           maxLengths={maxLengths}
           onCreate={onCreate}
+          showSnackbar={showSnackbar}
+          snackbarMessage={snackbarMessage}
+          handleCloseSnackbar={handleCloseSnackbar}
         />
         {noteId && (
           <EditNote
