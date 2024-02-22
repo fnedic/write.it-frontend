@@ -6,7 +6,6 @@ export const useNote = (form) => {
   const [notes, setNotes] = useState();
   const [archived, setArchived] = useState();
   const [toEdit, setToEdit] = useState();
-  const [ categories, setCategories] = useState();
 
   const onCreate = async () => {
     await NoteService.createNote(form);
@@ -65,22 +64,12 @@ export const useNote = (form) => {
       .catch((err) => console.log(err));
   };
 
-  const getCategories = async () => {
-    await NoteService.getCategories()
-    .then((response) => {setCategories(response.data);})
-    .catch((err) => console.log(err));
-  };
-
   useEffect(() => {
     getUnarchivedNotes();
   }, []);
 
   useEffect(() => {
     getArchivedNotes();
-  }, []);
-
-  useEffect(() => {
-    getCategories();
   }, []);
 
   return {
@@ -96,7 +85,5 @@ export const useNote = (form) => {
     archiveNote,
     getArchivedNotes,
     unarchiveNote,
-    getCategories,
-    categories
   };
 };

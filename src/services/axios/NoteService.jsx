@@ -34,10 +34,6 @@ class NoteService {
   unarchiveNote(id) {
     return axios.put(baseURL + "/unarchive-note/" + id)
   }
-
-  getCategories() {
-    return axios.get(baseURL + "/get-categories");
-  }
 }
 
 const instance = new NoteService();
