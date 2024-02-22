@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = "https://writeit-backend.zeabur.internal";
+const baseURL = "https://writeit-backend.zeabur.app";
 
 class NoteService {
   createNote(form) {
